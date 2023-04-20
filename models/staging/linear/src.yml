@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: source_db_public
+    database: source_db
+    schema: public
+    tables:
+      - name: linear
