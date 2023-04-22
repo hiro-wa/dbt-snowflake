@@ -19,7 +19,7 @@ jobs:
     env:
       DBT_ACCOUNT_ID: 161265
       DBT_PROJECT_ID: 237607
-      DBT_PR_JOB_ID:  278926
+      DBT_PR_JOB_ID:  280232
       DBT_API_KEY: ${{ secrets.DBT_API_KEY }}
       DBT_JOB_CAUSE: 'GitHub Pipeline CI Job' 
       DBT_JOB_BRANCH: ${{ github.ref_name }}

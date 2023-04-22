@@ -5,10 +5,6 @@ name: run dbt Cloud job manually
 on:
   workflow_dispatch:
     inputs:
-      branch_name:
-        type: string
-        description: 'Branch name'
-        required: true
       job_id:
         type: string
         description: 'Job ID'
@@ -27,7 +23,7 @@ jobs:
       DBT_PR_JOB_ID:  ${{ inputs.job_id }}
       DBT_API_KEY: ${{ secrets.DBT_API_KEY }}
       DBT_JOB_CAUSE: 'GitHub Pipeline CI Job Manually' 
-      DBT_JOB_BRANCH: ${{ inputs.branch_name }}
+      DBT_JOB_BRANCH: ${{ github.ref_name }}
 
     steps:
       - uses: "actions/checkout@v3"
