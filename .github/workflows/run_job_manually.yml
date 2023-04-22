@@ -1,0 +1,38 @@
+name: run dbt Cloud job manually
+
+# dbt jobを手動で実行
+# ブランチとjob IDを指定する必要あり
+on:
+  workflow_dispatch:
+    inputs:
+      branch_name:
+        type: string
+        description: 'Branch name'
+        required: true
+      job_id:
+        type: string
+        description: 'Job ID'
+        required: true
+
+jobs:
+  # jobを実行するためにdbt Cloud APIを呼び出す
+  run_dbt_cloud_job:
+    name: Run dbt Cloud Job
+    runs-on: ubuntu-latest
+
+  # 実行に必要な環境変数を設定
+    env:
+      DBT_ACCOUNT_ID: 161265
+      DBT_PROJECT_ID: 237607
+      DBT_PR_JOB_ID:  ${{ inputs.job_id }}
+      DBT_API_KEY: ${{ secrets.DBT_API_KEY }}
+      DBT_JOB_CAUSE: 'GitHub Pipeline CI Job Manually' 
+      DBT_JOB_BRANCH: ${{ inputs.branch_name }}
+
+    steps:
+      - uses: "actions/checkout@v3"
+      - uses: "actions/setup-python@v2"
+        with:
+          python-version: "3.9"
+      - name: Run dbt Cloud job
+        run: "python python/run_and_monitor_dbt_job.py"
