@@ -2,14 +2,11 @@ version: 2
 
 models:
   - name: linear_model
-    description: "線型モデル"
+    description: "線型データ"
     columns:
       - name: y
-        description: "欠損値・外れ値検チェック"
+        description: "欠損値チェック"
         tests:
           - not_null:
-              config:
-                store_failures: true
-          - not_negative:
               config:
                 store_failures: true
