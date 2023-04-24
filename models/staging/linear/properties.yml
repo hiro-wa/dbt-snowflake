@@ -5,8 +5,11 @@ models:
     description: "線型データ"
     columns:
       - name: y
-        description: "欠損値チェック"
+        description: "欠損値・負数チェック"
         tests:
           - not_null:
+              config:
+                store_failures: true
+          - not_negative:
               config:
                 store_failures: true

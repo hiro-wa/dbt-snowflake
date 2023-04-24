@@ -16,7 +16,7 @@ jobs:
     name: Run dbt Cloud Job
     runs-on: ubuntu-latest
 
-  # 実行に必要な環境変数を設定
+    # 実行に必要な環境変数を設定
     env:
       DBT_ACCOUNT_ID: 161265
       DBT_PROJECT_ID: 237607
